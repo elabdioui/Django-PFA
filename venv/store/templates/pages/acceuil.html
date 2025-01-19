@@ -1,0 +1,40 @@
+
+{% extends 'parts/navbar.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/acceuil.css' %}">
+
+
+
+{% block content1 %}
+<body>
+</body>
+<img src="{%static 'image/background.png'%}" alt="bg-IMAGE" height="100%" width="100%" >
+
+        <div class="row">
+            <div class="col-sm-3 mx-auto m-2 border rounded border-secondary border-2 border-rounded blocktest">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Consulter</h3>
+                <p>
+                    explorez notre catalogue de produits riche et varié, filtrable par catégories, prix et popularité, et bénéficiez d'une recherche avancée pour trouver exactement ce que vous cherchez. Chaque produit dispose d'une page détaillée avec des descriptions complètes, des spécifications, des avis clients et des images haute résolution, accompagnées de suggestions de produits similaires.
+                </p>
+            </div>
+            <div class="col-sm-3 mx-auto m-2 border rounded border-secondary border-2 border-rounded ">
+                <i class="fa-solid fa-car"></i>
+                <h3>Reserver</h3>
+                <p>
+                    une interface intuitive vous permet de sélectionner facilement la date et l'heure, avec un calendrier intégré affichant les disponibilités en temps réel. Le processus de réservation est simplifié grâce à un formulaire rapide à remplir et des confirmations envoyées par email ou SMS.
+                </p>
+            </div>
+            <div class="col-sm-3 mx-auto m-2 border rounded border-secondary border-2 border-rounded">
+                <i class="fa-solid fa-money-bill"></i>
+                <h3>Ajouter au Panier</h3>
+                <p>
+                    ajouter des produits est rapide et facile, avec des options pour modifier les quantités, supprimer des articles ou les enregistrer pour plus tard. Notre processus de commande est clair et rapide, avec plusieurs modes de paiement sécurisés. Profitez d'une expérience d'achat en ligne sans tracas avec des fonctionnalités pensées pour répondre à tous vos besoins.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

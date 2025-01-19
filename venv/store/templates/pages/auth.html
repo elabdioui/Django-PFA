@@ -1,0 +1,74 @@
+{% extends 'parts/navbar.html' %}
+{% load static %}
+
+<div class="container">
+    {% block content1 %}
+    <div class="auth_forms">
+        <div class="center-container_wrapper">
+            <div class="container_wrapper" id="container_wrapper">
+                <button class="btn btn-light btn-close-auth" id="btn-close-auth" style="display: none;">close</button>
+
+                <!-- Sign Up Form -->
+                <div class="form-container_wrapper sign-up-container_wrapper">
+                    <form method="POST" action="{% url 'signup' %}" class="auth_form" id="registerForm">
+                        {% csrf_token %}
+                        <h1 id="log_title">Create Account</h1><br/>
+                        {{ signup_form.non_field_errors }}
+                        {{ signup_form.username }}
+                        {{ signup_form.email }}<img width=25px src="{% static 'image/correct.png' %}" alt="valid" class="mail_ready">
+                        <span class="text-danger mail_error">Error: Please follow the correct email format</span>
+                        <img width=25px src="{% static 'image/traverser.png' %}" alt="invalid" class="mail_error">
+                        {{ signup_form.password }}<img width=25px src="{% static 'image/correct.png' %}" alt="valid" class="psw_ready">
+                        <span class="text-danger psw_error">Error: Please follow the correct password format
+                            <img width=25px src="{% static 'image/traverser.png' %}" alt="invalid" class="psw_error">
+                            Example: <span id="generated_password" class="text-dark"></span>
+                        </span>
+                        <button id="generate-btn" class="btn btn-secondary generate-btn m-2" type="button">Generate Password</button>
+                        <div>
+                            <span class="text-success form_ready">ALL SET!</span>
+                            <img width="25px" src="{% static 'image/correct.png' %}" alt="CheckMark" class="form_ready">
+                        </div>
+                        <button id="signup_auth" class="auth_button" name="signup-submit" disabled="disabled">Sign Up</button>
+                    </form>
+                </div>
+
+                <!-- Sign In Form -->
+                <div class="form-container_wrapper sign-in-container_wrapper">
+                    <form method="POST" action="{% url 'login' %}" class="auth_form" id="loginForm">
+                        {% csrf_token %}
+                        <h1 id="log_title">Sign in</h1>
+                        {{ login_form.non_field_errors }}
+                        {{ login_form.username }}
+                        {{ login_form.password }}
+                        <img width=30px src="{% static 'image/correct.png' %}" alt="valid" class="login_mail_ready">
+                        <span class="text-danger login_mail_error">Error: Please follow the correct email format</span>
+                        <img width=25px src="{% static 'image/traverser.png' %}" alt="invalid" class="login_mail_error">
+                        <img width=25px src="{% static 'image/correct.png' %}" alt="valid" class="login_psw_ready">
+                        <span class="text-danger login_psw_error m-1">Error: Please follow the correct password format
+                            <img width=25px src="{% static 'image/traverser.png' %}" alt="invalid" class="login_psw_error">
+                        </span>
+                        <a href="#" id="reset">Can't remember your password?</a>
+                        <button id="signin_auth" class="auth_button" name="login-submit" >Sign In</button>
+                    </form>
+                </div>
+
+                <!-- Overlay -->
+                <div class="overlay-container_wrapper">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>Already a member?</h1>
+                            <p>Login now and unlock the exclusive offers tailored just for YOU!</p>
+                            <button class="auth_button_ghost" id="signin_ghost">Sign In</button>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <h1>New to our family?</h1>
+                            <p>Join us NOW and discover the warmth of the fabric wonderland!</p>
+                            <button class="auth_button_ghost" id="signup_ghost">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>

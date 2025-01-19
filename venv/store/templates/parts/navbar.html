@@ -1,0 +1,102 @@
+{% extends 'parts/header.html' %}
+{% load static %}
+{% block content %}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'image/logo.png' %}" alt="Brand" width="40px">WheelStation</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Acceuil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/products/' %}active{% endif %}" href="{% url 'product_list' %}">Produit</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link  {% if request.path == '/cart/' %}active{% endif %}" href="{% url 'my_cart' %}">Cart</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="navbar-text">{{ request.user.username }}</span>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link btn btn-outline-danger" href="{% url 'logout' %}">logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-success" href="{% url 'signup' %}">login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        {% block content1 %}
+        {% endblock %}
+        <div class=" container-fluid expand-sm p-4 bg-body-tertiary text-center bg-dark text-white mt-5">
+            <section class="mb-4">
+                <ul class="wrapper text-dark">
+                    <li class="icon facebook">
+                        <span class="tooltip">Facebook</span>
+                        <span><i class="fab fa-facebook"></i></span>
+                    </li>
+                    <li class="icon twitter">
+                        <span class="tooltip">Twitter</span>
+                        <span><i class="fab fa-twitter"></i></span>
+                    </li>
+                    <li class="icon location">
+                        <span class="tooltip">Location</span>
+                        <span><i class="fa-solid fa-location-dot"></i></span>
+                    </li>
+                    <li class="icon instagram">
+                        <span class="tooltip">Instagram</span>
+                        <span><i class="fab fa-instagram"></i></span>
+                    </li>
+                    <li class="icon tiktok">
+                        <span class="tooltip">Tiktok</span>
+                        <span><i class="fab fa-tiktok"></i></span>
+                    </li>
+                    <li class="icon youtube">
+                        <span class="tooltip">Youtube</span>
+                        <span><i class="fab fa-youtube"></i></span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-4">
+                <p>
+                    Adresse :
+                    123 Rue des Orangers 75001 Casablanca, Maroc <br>
+                    
+                    Contact :
+                    Téléphone : +212 6 78 75 03 89 
+                    Email : contact@nomdelentreprise.com     <br>
+                    
+                    Heures d'ouverture :
+                    Lundi - Vendredi : 9h00 - 18h00
+                    Samedi : 10h00 - 16h00
+                    Dimanche : Fermé
+                </p>
+            </section>
+
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2024 Copyright:
+            <span class="text-reset fw-bold">WheelStation</span>
+        </div>
+    </div>
+{% endblock %}

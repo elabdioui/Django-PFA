@@ -1,0 +1,78 @@
+{% extends 'parts/navbar.html' %}
+{% load static %}
+
+{% block content1 %}
+
+<body>
+    <script>
+        function updateFormAction(productId) {
+            var quantity = document.getElementById('quantity-' + productId).value;
+            var form = document.getElementById('update-form-' + productId);
+            form.action = "{% url 'update_cart' 0 0 %}".replace('/0/0', '/' + productId + '/' + quantity);
+        }
+    </script>
+    <h1>My Cart</h1>
+
+    {% if products %}
+    <table class="table">
+        <tr>
+            <th>
+                Icon
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    
+    {% for product in products %} 
+    <tr>
+        <td>
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="25px">
+        </td>
+        <td>
+            {{product.name}}
+        </td>
+        <td>
+            {{product.price}}
+        </td>
+        <td>
+            {{product.type}}
+        </td>
+        <td>
+            <input type="number" id="quantity-{{ product.id }}" name="quantity" value="{{ product.quantity }}" min="1" 
+            onchange="updateFormAction(`{{ product.id }}`)">        
+        </td>
+        <td>
+            <form id="update-form-{{ product.id }}" action="{% url 'update_cart' product.id 0 %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-success">Modifier Quantite</button>
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'delete_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
+    Le total de votre achat est : {{total}}
+        <a href="{% url 'contact' %}" class="btn btn-primary">Buy NOW!</a>
+    {% else %}
+    <span class="text-warning">Cart is empty!</span>
+    {%endif%}
+</body>
+{% endblock %}
